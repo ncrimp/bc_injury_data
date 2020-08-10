@@ -1,0 +1,54 @@
+library(tidyverse)
+library(readxl)
+library(here)
+
+#injuries_2012_raw <- read_excel("H:/Personal R Projects/bc_injury_data/BC_injuries_2012.xlsx", skip = 20)
+
+injuries_2012_raw <- read_excel(here("BC_injuries_2012.xlsx"), skip = 20)
+injuries_2013_raw <- read_excel(here("BC_injuries_2013.xlsx"), skip = 20)
+injuries_2014_raw <- read_excel(here("BC_injuries_2014.xlsx"), skip = 20)
+injuries_2015_raw <- read_excel(here("BC_injuries_2015.xlsx"), skip = 20)
+injuries_2016_raw <- read_excel(here("BC_injuries_2016.xlsx"), skip = 20)
+
+
+# Region in raw data is recorded only when it changes. 
+# Removes NAs from Region by filling in values. 
+# Removes non-data rows from raw data
+injuries_2012 <- injuries_2012_raw %>% 
+  fill(Region) %>%
+  filter(Region %in% c('Interior', 'Fraser', 
+        'Vancouver Coastal', 'Island', 'Northern')) %>%
+  mutate(year = 2007)
+
+injuries_2013 <- injuries_2013_raw %>% 
+  fill(Region) %>%
+  filter(Region %in% c('Interior', 'Fraser', 
+                       'Vancouver Coastal', 'Island', 'Northern')) %>%
+  mutate(year = 2013) %>%
+  view()
+
+injuries_2014 <- injuries_2014_raw %>% 
+  fill(Region) %>%
+  filter(Region %in% c('Interior', 'Fraser', 
+                       'Vancouver Coastal', 'Island', 'Northern')) %>%
+  mutate(year = 2014) %>%
+  view()
+  
+
+injuries_2015 <- injuries_2015_raw %>% 
+  fill(Region) %>%
+  filter(Region %in% c('Interior', 'Fraser', 
+                       'Vancouver Coastal', 'Island', 'Northern')) %>%
+  mutate(year = 2015) %>%
+  view()
+
+injuries_2016 <- injuries_2016_raw %>% 
+  fill(Region) %>%
+  filter(Region %in% c('Interior', 'Fraser', 
+                       'Vancouver Coastal', 'Island', 'Northern')) %>%
+  mutate(year = 2016) %>%
+  view()
+
+
+
+view(injuries_2015)
